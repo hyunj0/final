@@ -28,7 +28,7 @@ public class Dealer {
      *   A list containing all cards, in a random order.
      */
     public static List<Card> getShuffledDeck() {
-        final List<Card> deck = new ArrayList<>();
+        final List<Card> deck = new ArrayList<Card>();
         // Add all cards to the deck, in order.
         for (Card.Suit suit : Card.Suit.values())
             for (Card.Number number : Card.Number.values())
@@ -58,7 +58,21 @@ public class Dealer {
         //   - Add cards to the hand, removing them from the deck.
         //   - Add the hand to the list of hands.
         // - Return the list of hands.
-        return null;
+
+        List<Card> shuffledDeck = getShuffledDeck();
+        int nextCard = 0;
+
+        List<List<Card>> listOfHands = new ArrayList<List<Card>>();
+        for (int hand = 0; hand < numPlayers; hand++) {
+            List<Card> playerCards = new ArrayList<Card>();
+            for (int card = 0; card < numCards; card++) {
+                playerCards.add(shuffledDeck.get(nextCard));
+                nextCard++;
+            }
+            listOfHands.add(playerCards);
+        }
+
+        return listOfHands;
     }
 
     public static void main(String[] args) {

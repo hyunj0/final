@@ -1,5 +1,7 @@
 package abbr;
 
+import java.util.HashSet;
+
 public class Abbreviate {
 
     /**
@@ -8,9 +10,26 @@ public class Abbreviate {
      * Returns a new string that is equal to 'string' but with all vowels, both capital and
      * lower case, removed.  Other characters are unmodified.
      */
-    public static String abbreviate(String string) {
+
+    public static String abbreviate(String string)
+    {
         // TODO: Write this method.
-        return null;
+
+        HashSet<Character> vowels = new HashSet<Character>();
+        vowels.add('a');
+        vowels.add('e');
+        vowels.add('i');
+        vowels.add('o');
+        vowels.add('u');
+
+        String abbreviatedString = "";
+        for (int i = 0; i < string.length(); i++) {
+            if (vowels.contains(string.charAt(i))) {
+                continue;
+            }
+            abbreviatedString += string.charAt(i);
+        }
+        return abbreviatedString;
     }
 
     public static void main(String[] args) {

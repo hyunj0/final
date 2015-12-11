@@ -1,5 +1,8 @@
 package radiobutton;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents a group of "radio buttons": toggle buttons for which exactly one is selected
  * at a given time. If a different button is selected, the previously-selected button is
@@ -9,6 +12,8 @@ package radiobutton;
  * button group has 4 buttons, they are numbered 0, 1, 2, and 3.
  */
 public class RadioButtonGroup {
+
+    private List<RadioButton> radioButtons;
 
     /**
      * Creates a group of radio buttons.
@@ -22,6 +27,19 @@ public class RadioButtonGroup {
      */
     public RadioButtonGroup(int numButtons, int initial) {
         // TODO: Implement this method.
+
+        if (initial > numButtons)
+            throw new RuntimeException("The initial button number is invalid.");
+
+        this.radioButtons = new ArrayList<RadioButton>();
+
+        for (int i = 0; i < numButtons; i++) {
+            if (i == initial) {
+                radioButtons.add(new RadioButton(("Button " + i), true));
+            } else {
+                radioButtons.add(new RadioButton(("Button " + i), false));
+            }
+        }
     }
 
     /**
@@ -40,6 +58,11 @@ public class RadioButtonGroup {
      */
     public void select(int button) {
         // TODO: Implement this method.
+        for (int i = 0; i < radioButtons.size(); i++) {
+            if (radioButtons.get(i).isSelected())
+                radioButtons.get(i).setSelected(false);
+        }
+        radioButtons.get(button).setSelected(true);
     }
 
     /**
@@ -51,7 +74,7 @@ public class RadioButtonGroup {
      */
     public boolean isSelected(int button) {
         // TODO: Implement this method.
-        return false;
+        return radioButtons.get(button).isSelected();
     }
 
     // TODO: Add attributes and helper methods as needed.
