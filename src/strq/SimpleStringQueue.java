@@ -9,7 +9,8 @@ import java.util.List;
 public class SimpleStringQueue implements StringQueue
 {
 
-    ArrayDeque characterQueue;
+    //typo as the collection used was ArrayList
+    ArrayList characterQueue;
 
     public SimpleStringQueue()
     {
